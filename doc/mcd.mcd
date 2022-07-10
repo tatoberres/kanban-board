@@ -1,0 +1,7 @@
+LISTE: code_liste, titre, ordre
+POSSÈDE, 0N LISTE, 11 CARTE
+CARTE: code_carte, titre, couleur, ordre
+
+CATÉGORISÉE PAR, 0N CARTE, 0N LABEL
+
+LABEL: code_label, titre, couleur
