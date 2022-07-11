@@ -1,25 +1,34 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
 
-const mainController = require('./controllers/main');
-const listController = require('./controllers/list');
-const cardController = require('./controllers/card');
-const tagController = require('./controllers/label');
+import {
+  readAll,
+  create,
+  readOne,
+  update,
+  deleteOne,
+  createOrUpdate,
+  notFound,
+} from "./controllers/main.js";
+import { getListCards } from "./controllers/list.js";
+import {
+  updateCardTags,
+  addCardTagsAssociation,
+  deleteCardTagsAssociation,
+} from "./controllers/card.js";
 
-router.get('/:entity', mainController.readAll);
-router.post('/:entity', mainController.create);
-router.get('/:entity/:id', mainController.readOne);
-router.patch('/:entity/:id', mainController.update);
-router.delete('/:entity/:id', mainController.delete);
-router.put('/:entity/:id?', mainController.createOrUpdate);
+router.get("/:entity", readAll);
+router.post("/:entity", create);
+router.get("/:entity/:id", readOne);
+router.patch("/:entity/:id", update);
+router.delete("/:entity/:id", deleteOne);
+router.put("/:entity/:id?", createOrUpdate);
 
-router.post('/cards/:id/tag', cardController.updateCardTags);
-router.post('/cards/:card_id/tag/:tag_id', cardController.addCardTagsAssociation);
-router.delete('/cards/:card_id/tag/:tag_id', cardController.deleteCardTagsAssociation);
-router.get('/lists/:id/cards', listController.getListCards);
+router.post("/cards/:id/tag", updateCardTags);
+router.post("/cards/:card_id/tag/:tag_id", addCardTagsAssociation);
+router.delete("/cards/:card_id/tag/:tag_id", deleteCardTagsAssociation);
+router.get("/lists/:id/cards", getListCards);
 
-router.use(mainController.notFound);
+router.use(notFound);
 
-
-
-module.exports = router;
+export default router;

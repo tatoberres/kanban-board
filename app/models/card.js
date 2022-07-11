@@ -1,21 +1,22 @@
-const {Model, DataTypes} = require('sequelize');
-const sequelize = require('../database');
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../database.js";
 
 class Card extends Model {
-  static routeName = 'cards';
-  static orderDefault = [
-    ['position', 'ASC'],
-  ];
-  static requiredFields = ['title', 'list_code'];
-};
+  static routeName = "cards";
+  static orderDefault = [["position", "ASC"]];
+  static requiredFields = ["title", "list_code"];
+}
 
-Card.init({
-  title: DataTypes.TEXT,
-  color: DataTypes.TEXT,
-  position: DataTypes.SMALLINT,
-},{
-  sequelize,
-  tableName: 'card',
-});
+Card.init(
+  {
+    title: DataTypes.TEXT,
+    color: DataTypes.TEXT,
+    position: DataTypes.SMALLINT,
+  },
+  {
+    sequelize,
+    tableName: "card",
+  }
+);
 
-module.exports = Card;
+export default Card;

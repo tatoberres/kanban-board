@@ -1,10 +1,8 @@
-const {Sequelize} = require('sequelize');
+import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize(process.env.PG_URL,{
-    define: {
-      underscored: true
-    },
-    //logging: false,
+export const sequelize = new Sequelize(process.env.PG_URL, {
+  define: {
+    underscored: true,
+  },
+  //logging: false,
 });
-
-module.exports = sequelize;

@@ -1,23 +1,25 @@
 // on récupère les models utiles
-const { List, Card } = require('../models');
+import models from "../models/index.js";
 
-const listController = {
-    getListCards: async (req, res) => {
-        try {
-            const cards = await Card.findAll({
-                where: {
-                    list_code: req.params.id,
-                },
-                include: 'labels'
-            });
-            res.json(cards);
-        }  catch(error) {
-            console.log(error);
-            res.status(500).json({
-                message: 'Impossible d\'obtenir la liste demandee',
-            });
-        }
+console.log("Card", Card, Card.Card);
+
+export const listController = {
+  getListCards: async (req, res) => {
+    try {
+      const cards = await models.Card.findAll({
+        where: {
+          list_code: req.params.id,
+        },
+        include: "labels",
+      });
+      res.json(cards);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "Impossible d'obtenir la liste demandee",
+      });
     }
+  },
 };
 
-module.exports = listController;
+export const { getListCards } = listController;

@@ -1,23 +1,25 @@
-require('dotenv').config();
-const client = require("./app/database");
-
-const express = require('express');
-const router = require('./app/router');
-const cors = require('cors');
-const multer = require('multer');
+import "dotenv/config";
+import express, { urlencoded } from "express";
+import router from "./app/router.js";
+import cors from "cors";
+import multer from "multer";
 const bodyParser = multer();
 const port = process.env.PORT;
 const app = express();
 
-app.use(cors({
-   origin: '*',
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(bodyParser.none());
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+app.use("static", express.static("public"));
+app.use(urlencoded({ extended: true }));
 
 app.use(router);
 
-app.listen(port, _ => {
-   console.log(`http://localhost:${port}`);
+app.listen(port, (_) => {
+  console.log(`http://localhost:${port}`);
 });
+
+export default app;

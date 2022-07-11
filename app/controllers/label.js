@@ -1,8 +1,4 @@
 // on récupère les models utiles
-const { Label } = require('../models');
+import models from "../models/index.js";
 
-const tagController = {
-    
-};
-
-module.exports = tagController;
+export const tagController = {};

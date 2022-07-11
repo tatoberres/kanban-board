@@ -1,18 +1,21 @@
-const {Model, DataTypes} = require('sequelize');
-const sequelize = require('../database');
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../database.js";
 
 class Label extends Model {
-  static routeName = 'labels';
+  static routeName = "labels";
   static orderDefault = [];
-  static requiredFields = ['title'];
-};
+  static requiredFields = ["title"];
+}
 
-Label.init({
-  title: DataTypes.TEXT,
-  color: DataTypes.TEXT
-},{
-  sequelize,
-  tableName: 'label',
-});
+Label.init(
+  {
+    title: DataTypes.TEXT,
+    color: DataTypes.TEXT,
+  },
+  {
+    sequelize,
+    tableName: "label",
+  }
+);
 
-module.exports = Label;
+export default Label;
